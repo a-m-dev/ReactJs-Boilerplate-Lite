@@ -15,9 +15,14 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Typography,
 } from "@material-ui/core";
 import { Inbox, Mail } from "@material-ui/icons";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
+import {
+  SignupForm,
+  SignupFormWithContext,
+} from "../_shared/Signup/SignupForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,66 +36,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Material_UI(props) {
   const classes = useStyles();
-  const [state, setState] = useState({
-    top: false,
-    bottom: false,
-    left: false,
-    right: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (e) => {
-    if (e.type === "keydown" && (e.key === "Tab" || e.key === "Shift")) return;
-
-    setState({ ...state, [anchor]: open });
-  };
-
-  const list = (anchor) => (
-    <div
-      className={clsx(classes, list, {
-        [classes.fullList]: anchor === "top" || anchor === "bottom",
-      })}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <Inbox /> : <Mail />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <Inbox /> : <Mail />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
 
   return (
     <Paper className={classes.root}>
-      {["left", "right", "top", "bottom"].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
+      <Typography variant="h4" gutterBottom>
+        Hi there
+      </Typography>
+      <Typography>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis beatae
+        placeat, odio molestias ut vero! Temporibus fugiat quis asperiores
+        culpa, beatae nisi excepturi aliquid exercitationem iusto doloribus ea
+        unde facere rem consequatur minus error quia accusantium in explicabo
+        cum. Provident!
+      </Typography>
+      <hr />
+      <SignupForm />
+      <hr />
+      <SignupFormWithContext />
     </Paper>
   );
 }
