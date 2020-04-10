@@ -4,7 +4,6 @@ import { useFormik } from "formik";
 const FormikContext = React.createContext({});
 
 export const Formik = ({ children, ...props }) => {
-  console.log(props);
   const formikStateAndHelpers = useFormik(props);
   return (
     <FormikContext.Provider value={formikStateAndHelpers}>

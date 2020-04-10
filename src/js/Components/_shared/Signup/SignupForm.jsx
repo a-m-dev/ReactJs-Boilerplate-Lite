@@ -1,6 +1,6 @@
 import React from "react";
-import { useFormik } from "formik";
-import { Formik } from "./Formik";
+import { useFormik, Formik, Field, ErrorMessage } from "formik";
+// import { Formik } from "./Formik";
 import * as Yup from "yup";
 
 export const SignupForm = () => {
@@ -102,6 +102,7 @@ export const SignupForm = () => {
 export const SignupFormWithContextMock = () => {
   return (
     <Formik
+      // validateOnBlur
       initialValues={{ firstname: "", lastname: "", email: "" }}
       validationSchema={Yup.object({
         firstname: Yup.string()
@@ -124,20 +125,54 @@ export const SignupFormWithContextMock = () => {
       {({ handleSubmit, touched, errors, getFieldProps }) => (
         <form onSubmit={handleSubmit}>
           <label htmlFor="firstname">Firstname</label>
-          <input id="firstname" {...getFieldProps("firstname")} />
-          {touched.firstname && errors.firstname ? (
-            <em>{errors.firstname}</em>
-          ) : null}
+          <Field name="firstname" type="text" />
+          <ErrorMessage name="firstname" />
           <br />
           <label htmlFor="lastname">lastname</label>
-          <input id="lastname" {...getFieldProps("lastname")} />
-          {touched.lastname && errors.lastname ? (
-            <em>{errors.lastname}</em>
-          ) : null}
+          <Field name="lastname" type="text" />
+          <ErrorMessage name="lastname" />
           <br />
           <label htmlFor="email">email</label>
-          <input id="email" {...getFieldProps("email")} />
-          {touched.email && errors.email ? <em>{errors.email}</em> : null}
+          <Field name="email" type="email" />
+          <ErrorMessage name="email" />
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    </Formik>
+  );
+};
+
+export const NestedForm = () => {
+  return (
+    <Formik
+      initialValues={{
+        name: {
+          firstname: "",
+          lastname: "",
+        },
+      }}
+      // validationSchema={Yup.object({
+      //   name: Yup.object({
+      //     firstname: Yup.string()
+      //       .max(10, "sdfasd fa sdf ")
+      //       .required("is Requred"),
+      //     lastname: Yup.string()
+      //       .max(10, "sdfasd fa sdf ")
+      //       .required("is Requred"),
+      //   }),
+      // })}
+      onSubmit={(values) => {
+        alert(JSON.stringify(values, null, 2));
+      }}
+    >
+      {({ handleSubmit }) => (
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name.firstname">Firstname</label>
+          <Field name="name.firstname" />
+          <br />
+          <label htmlFor="name.lastname">lastname</label>
+          <Field name="name.lastname" />
           <br />
           <button type="submit">Submit</button>
         </form>

@@ -22,6 +22,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
   SignupForm,
   SignupFormWithContextMock,
+  NestedForm,
 } from "../_shared/Signup/SignupForm";
 
 const useStyles = makeStyles((theme) => ({
@@ -53,6 +54,8 @@ export default function Material_UI(props) {
       <SignupForm />
       <hr />
       <SignupFormWithContextMock />
+      <hr />
+      <NestedForm />
     </Paper>
   );
 }
