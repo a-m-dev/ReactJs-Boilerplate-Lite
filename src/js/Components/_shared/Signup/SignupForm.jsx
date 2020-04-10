@@ -99,7 +99,7 @@ export const SignupForm = () => {
   );
 };
 
-export const SignupFormWithContext = () => {
+export const SignupFormWithContextMock = () => {
   return (
     <Formik
       initialValues={{ firstname: "", lastname: "", email: "" }}

@@ -21,7 +21,7 @@ import { Inbox, Mail } from "@material-ui/icons";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
   SignupForm,
-  SignupFormWithContext,
+  SignupFormWithContextMock,
 } from "../_shared/Signup/SignupForm";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,7 +52,7 @@ export default function Material_UI(props) {
       <hr />
       <SignupForm />
       <hr />
-      <SignupFormWithContext />
+      <SignupFormWithContextMock />
     </Paper>
   );
 }
