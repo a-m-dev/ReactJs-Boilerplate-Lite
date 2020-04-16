@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import DateProvider from "./Components/_Providers/DateProvider";
 
+import "../sass/app.scss";
 
-import '../sass/app.scss'
-
-import Index from './Components/Index'
-
+import Index from "./Components/Index";
 
 ReactDOM.render(
   <BrowserRouter>
-    <Index />
+    <DateProvider>
+      <Index />
+    </DateProvider>
   </BrowserRouter>,
-  document.getElementById('app')
+  document.getElementById("app")
 );
